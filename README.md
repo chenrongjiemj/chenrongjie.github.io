@@ -84,8 +84,8 @@
 ## 🌐 联系方式
 
 - **邮箱**: [chenr5425@gmail.com](mailto:chenr5425@gmail.com)
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **地址**: 东京，日本
+- **GitHub**: [@yourusername]([https://github.com/yourusername](https://github.com/chenrongjiemj))
+- **地址**: 中国， 福州
 
 ---
 
