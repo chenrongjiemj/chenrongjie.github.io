@@ -3,148 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈蓉杰 - Rongjie Chen | 隐私保护研究者</title>
+    <meta name="description" content="陈蓉杰 - 机器遗忘与隐私保护研究者 | Rongjie Chen - Machine Unlearning & Privacy Protection Researcher">
+    <meta name="keywords" content="机器遗忘, 隐私保护, 机器学习, 网络空间安全, Machine Unlearning, Privacy Protection, Cybersecurity">
+    <meta name="author" content="Rongjie Chen">
+    <title>陈蓉杰 · 机器遗忘与隐私保护 | Rongjie Chen · Machine Unlearning & Privacy</title>
     <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --border-color: #e0e0e0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #e0e0e0;
+                --text-secondary: #b0b0b0;
+                --bg-primary: #1e1e1e;
+                --bg-secondary: #2a2a2a;
+                --border-color: #444444;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+            color: var(--text-primary);
+            background: var(--bg-primary);
             padding: 20px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            nav {
+                background: rgba(30, 30, 30, 0.95);
+            }
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .lang-toggle {
+            background: var(--bg-secondary);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .lang-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
         }
 
         /* Header Section */
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 60px 40px;
+            padding: 80px 40px;
             text-align: center;
+            border-radius: 15px;
+            margin-bottom: 60px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .header {
+                background: linear-gradient(135deg, #5568d3 0%, #6a3f91 100%);
+            }
         }
 
         .profile-image {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
             border: 5px solid white;
             margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 0.8s ease-out;
+            background: #e0e0e0; /* placeholder background */
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header h1 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin-bottom: 10px;
             font-weight: 700;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
         }
 
-        .header p {
-            font-size: 1.2em;
+        .header .subtitle {
+            font-size: 1.3em;
             opacity: 0.95;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .header .tagline {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .header .affiliation {
+            font-size: 1em;
+            opacity: 0.85;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease-out 0.35s both;
+        }
+
+        .header .affiliation a {
+            color: white;
+            text-decoration: underline;
+            transition: opacity 0.3s ease;
+        }
+
+        .header .affiliation a:hover {
+            opacity: 0.7;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .contact-links a {
             color: white;
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: 2px solid white;
             border-radius: 5px;
             transition: all 0.3s ease;
             font-weight: 500;
+            font-size: 0.95em;
         }
 
         .contact-links a:hover {
             background: white;
             color: #667eea;
+            transform: translateY(-2px);
         }
 
         /* Main Content */
         .content {
-            padding: 60px 40px;
+            animation: fadeIn 0.8s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         .section {
-            margin-bottom: 50px;
+            margin-bottom: 70px;
         }
 
         .section h2 {
-            font-size: 1.8em;
-            color: #667eea;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
             display: inline-block;
+        }
+
+        .section p {
+            font-size: 1em;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        /* Education */
+        .education-card {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+        }
+
+        .education-card h3 {
+            color: var(--primary-color);
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .education-card .degree {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .education-card .details {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            margin-top: 8px;
+        }
+
+        .education-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .education-card a:hover {
+            text-decoration: underline;
         }
 
         /* Research Areas */
         .research-areas {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .research-card {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 5px solid #667eea;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            opacity: 0.05;
+            border-radius: 50%;
+            transform: translate(30px, -30px);
         }
 
         .research-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
         }
 
         .research-card h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.2em;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-size: 1.3em;
+            position: relative;
+            z-index: 1;
         }
 
         .research-card p {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 0.95em;
-            line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
 
         /* Skills */
         .skills-section {
-            margin-top: 25px;
+            margin-top: 30px;
         }
 
         .skill-category {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .skill-category h3 {
-            color: #667eea;
+            color: var(--primary-color);
             margin-bottom: 15px;
             font-size: 1.1em;
+            font-weight: 600;
         }
 
         .skill-list {
@@ -156,206 +404,451 @@
         .skill-tag {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-size: 0.95em;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         /* Projects */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .project-card {
-            background: white;
-            border: 2px solid #e0e0e0;
-            padding: 25px;
-            border-radius: 8px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            padding: 30px;
+            border-radius: 10px;
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px 10px 0 0;
         }
 
         .project-card:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.15);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
         }
 
         .project-card h3 {
-            color: #333;
-            margin-bottom: 12px;
-            font-size: 1.15em;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.2em;
         }
 
         .project-card p {
-            color: #666;
-            margin-bottom: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
             font-size: 0.95em;
-            line-height: 1.6;
         }
 
         .project-link {
-            color: #667eea;
+            color: var(--primary-color);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            transition: all 0.3s ease;
         }
 
         .project-link:hover {
-            text-decoration: underline;
+            gap: 12px;
+        }
+
+        .project-link::after {
+            content: '→';
         }
 
         /* Footer */
         .footer {
-            background: #f8f9fa;
-            padding: 30px 40px;
+            background: var(--bg-secondary);
+            padding: 40px;
             text-align: center;
-            color: #666;
-            border-top: 1px solid #e0e0e0;
+            color: var(--text-secondary);
+            border-radius: 10px;
+            border-top: 3px solid var(--primary-color);
+            margin-top: 80px;
         }
 
         .footer p {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Hidden Content */
+        .hidden-lang {
+            display: none;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .header {
-                padding: 40px 20px;
-            }
-
-            .content {
-                padding: 40px 20px;
+                padding: 50px 20px;
             }
 
             .header h1 {
                 font-size: 2em;
             }
 
+            .header .subtitle {
+                font-size: 1.1em;
+            }
+
             .section h2 {
-                font-size: 1.4em;
+                font-size: 1.5em;
             }
 
-            .research-areas {
-                grid-template-columns: 1fr;
-            }
-
+            .research-areas,
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                display: none;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .contact-links a {
+                width: 100%;
+                text-align: center;
+            }
+
+            nav .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-controls {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">RC</a>
+            <ul>
+                <li><a href="#about" onclick="scrollToSection(event)"><span id="nav-about-cn">关于</span><span id="nav-about-en" class="hidden-lang">About</span></a></li>
+                <li><a href="#education" onclick="scrollToSection(event)"><span id="nav-edu-cn">教育</span><span id="nav-edu-en" class="hidden-lang">Education</span></a></li>
+                <li><a href="#research" onclick="scrollToSection(event)"><span id="nav-research-cn">研究</span><span id="nav-research-en" class="hidden-lang">Research</span></a></li>
+                <li><a href="#projects" onclick="scrollToSection(event)"><span id="nav-projects-cn">项目</span><span id="nav-projects-en" class="hidden-lang">Projects</span></a></li>
+                <li><a href="#contact" onclick="scrollToSection(event)"><span id="nav-contact-cn">联系</span><span id="nav-contact-en" class="hidden-lang">Contact</span></a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="lang-toggle" id="langBtn" onclick="toggleLanguage()" title="切换语言">English</button>
+                <button class="theme-toggle" onclick="toggleTheme()" title="切换深色模式">🌙</button>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <!-- Header Section -->
         <div class="header">
-            <img src="./images/profile.jpg" alt="Profile Picture" class="profile-image">
-            <h1>陈蓉杰</h1>
-            <p>Rongjie Chen</p>
-            <p style="font-size: 1em; margin-bottom: 25px;">隐私保护 | 深度学习 | 机器学习安全</p>
+            <img src="./images/profile.jpg" alt="陈蓉杰的头像" class="profile-image" onerror="this.src='https://placehold.co/180x180?text=RJ'">
+            <h1 id="name-cn">陈蓉杰</h1>
+            <h1 id="name-en" class="hidden-lang">Rongjie Chen</h1>
+            
+            <p class="subtitle" id="subtitle-cn">Rongjie Chen</p>
+            <p class="subtitle hidden-lang" id="subtitle-en">陈蓉杰</p>
+            
+            <p class="tagline" id="tagline-cn">机器遗忘 | 隐私保护 | 可信机器学习</p>
+            <p class="tagline hidden-lang" id="tagline-en">Machine Unlearning | Privacy Protection | Trustworthy ML</p>
+            
+            <p class="affiliation">
+                <span id="affiliation-label-cn">硕士研究生就读于</span>
+                <span id="affiliation-label-en" class="hidden-lang">Master's Student at</span>
+                <a href="https://scholar.google.com/citations?view_op=view_org&hl=zh-CN&org=5596641031730139154" target="_blank">
+                    <span id="affiliation-cn">福建师范大学 · 计算机与网络空间安全学院</span>
+                    <span id="affiliation-en" class="hidden-lang">Fujian Normal University · College of Computer and Cyber Security</span>
+                </a>
+            </p>
+
             <div class="contact-links">
-                <a href="mailto:chenr5425@gmail.com">📧 邮箱</a>
-                <a href="https://github.com/yourusername">🐙 GitHub</a>
-                <a href="https://linkedin.com/in/rongjie-chen">💼 LinkedIn</a>
+                <a href="mailto:chenr5425@gmail.com">📧 Email</a>
+                <a href="https://github.com/chenrongjiemj" target="_blank">🐙 GitHub</a>
+                <a href="https://linkedin.com/in/rongjie-chen" target="_blank">💼 LinkedIn</a>
             </div>
         </div>
 
         <!-- Main Content -->
         <div class="content">
             <!-- About Section -->
-            <div class="section">
-                <h2>👋 关于我</h2>
-                <p>你好！我是陈蓉杰（Rongjie Chen），一位对隐私保护和深度学习充满热情的研究者。我致力于研究如何在保护个人隐私的同时，开发高效可靠的机器学习系统。</p>
-                <p style="margin-top: 15px;">我相信隐私是基本人权，通过差分隐私、联邦学习等技术，可以在保护数据隐私的同时，实现强大的机器学习能力。</p>
-            </div>
+            <section class="section" id="about">
+                <h2 id="about-title-cn">👋 关于我</h2>
+                <h2 id="about-title-en" class="hidden-lang">👋 About Me</h2>
+                
+                <p id="about-text1-cn">你好！我是陈蓉杰（Rongjie Chen），目前是福建师范大学计算机与网络空间安全学院的网络空间安全专业硕士研究生（2025–至今），研究聚焦于<span style="color: var(--primary-color);">机器遗忘 (Machine Unlearning)</span> 与<span style="color: var(--primary-color);">隐私保护技术</span>。我对“被遗忘权”、模型安全以及隐私合规充满热情，致力于设计高效且可验证的机器学习遗忘算法，从根源上保障数据隐私。</p>
+                <p id="about-text1-en" class="hidden-lang">Hello! I'm Rongjie Chen, a Master's student in Cybersecurity at Fujian Normal University (2025–present). My research focuses on <span style="color: var(--primary-color);">Machine Unlearning</span> & <span style="color: var(--primary-color);">Privacy-Preserving Technologies</span>. I am deeply passionate about the “right to be forgotten”, model security, and privacy compliance, striving to design efficient and verifiable machine unlearning algorithms to protect data privacy from the ground up.</p>
 
-            <!-- Research Areas -->
-            <div class="section">
-                <h2>🔬 研究领域</h2>
+                <p id="about-text2-cn">我相信隐私是一项基本权利。通过机器遗忘框架、差分隐私等技术，我们能够在用户数据删除请求、模型更新治理等场景中建立负责任的AI系统，让机器学习真正尊重个体隐私。</p>
+                <p id="about-text2-en" class="hidden-lang">I believe privacy is a fundamental right. By leveraging machine unlearning frameworks, differential privacy, and related techniques, we can build responsible AI systems that honor data deletion requests and model governance, ensuring machine learning truly respects individual privacy.</p>
+            </section>
+
+            <!-- Education Section -->
+            <section class="section" id="education">
+                <h2 id="education-title-cn">🎓 教育背景</h2>
+                <h2 id="education-title-en" class="hidden-lang">🎓 Education</h2>
+
+                <div class="education-card">
+                    <h3 id="edu-master-cn">网络空间安全 硕士研究生</h3>
+                    <h3 id="edu-master-en" class="hidden-lang">M.S. in Cybersecurity</h3>
+                    <div class="degree" id="edu-fnu-cn">福建师范大学 · 计算机与网络空间安全学院</div>
+                    <div class="degree hidden-lang" id="edu-fnu-en">Fujian Normal University · College of Computer and Cyber Security</div>
+                    <div class="details"><span id="edu-master-date-cn">2025 – 至今</span><span id="edu-master-date-en" class="hidden-lang">2025 – Present</span></div>
+                    <div class="details">
+                        <span id="edu-major-cn">研究方向：机器遗忘、隐私保护机器学习、数据合规</span>
+                        <span id="edu-major-en" class="hidden-lang">Research: Machine Unlearning, Privacy-Preserving ML, Data Compliance</span>
+                    </div>
+                    <div class="details">
+                        <a href="https://scholar.google.com/citations?view_op=view_org&hl=zh-CN&org=5596641031730139154" target="_blank" id="edu-link-text-cn">访问学校学者库</a>
+                        <a href="https://scholar.google.com/citations?view_op=view_org&hl=zh-CN&org=5596641031730139154" target="_blank" id="edu-link-text-en" class="hidden-lang">Visit Scholar Profile</a>
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <h3 id="edu-bachelor-cn">数据科学与大数据技术 理学学士</h3>
+                    <h3 id="edu-bachelor-en" class="hidden-lang">B.S. in Data Science and Big Data Technology</h3>
+                    <div class="degree" id="edu-xmut-cn">厦门理工学院 · 计算机与信息工程学院</div>
+                    <div class="degree hidden-lang" id="edu-xmut-en">Xiamen University of Technology · School of Computer and Information Engineering</div>
+                    <div class="details"><span id="edu-bachelor-date-cn">2021 – 2025</span><span id="edu-bachelor-date-en" class="hidden-lang">2021 – 2025</span></div>
+                    <div class="details">
+                        <span id="edu-bachelor-major-cn">主修课程：机器学习、数据挖掘、隐私计算基础、大数据架构</span>
+                        <span id="edu-bachelor-major-en" class="hidden-lang">Core: Machine Learning, Data Mining, Privacy Computing, Big Data Architecture</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Research Section (Machine Unlearning & Privacy) -->
+            <section class="section" id="research">
+                <h2 id="research-title-cn">🔬 研究领域</h2>
+                <h2 id="research-title-en" class="hidden-lang">🔬 Research Areas</h2>
                 <div class="research-areas">
                     <div class="research-card">
-                        <h3>隐私保护</h3>
-                        <p>差分隐私、隐私保护机器学习、数据脱敏、隐私预算管理</p>
+                        <h3 id="research1-title-cn">🧹 机器遗忘</h3>
+                        <h3 id="research1-title-en" class="hidden-lang">🧹 Machine Unlearning</h3>
+                        <p id="research1-text-cn">精确数据删除 · 遗忘验证 · SISA框架 · 近似遗忘 · 增量遗忘与模型修复 · 隐私合规（GDPR被遗忘权）</p>
+                        <p id="research1-text-en" class="hidden-lang">Exact Data Deletion · Unlearning Verification · SISA Framework · Approximate Unlearning · Incremental Unlearning · GDPR Compliance</p>
                     </div>
                     <div class="research-card">
-                        <h3>深度学习</h3>
-                        <p>神经网络设计、模型优化、联邦学习、模型压缩</p>
+                        <h3 id="research2-title-cn">🔐 隐私保护技术</h3>
+                        <h3 id="research2-title-en" class="hidden-lang">🔐 Privacy-Preserving Tech</h3>
+                        <p id="research2-text-cn">差分隐私 · 数据匿名化 · 隐私预算管理 · 隐私风险评估 · 机器学习中的隐私审计</p>
+                        <p id="research2-text-en" class="hidden-lang">Differential Privacy · Data Anonymization · Privacy Budget Management · Privacy Auditing in ML · Risk Assessment</p>
                     </div>
                     <div class="research-card">
-                        <h3>机器学习安全</h3>
-                        <p>对抗性鲁棒性、模型安全性、可信AI、模型解释性</p>
+                        <h3 id="research3-title-cn">🛡️ 可信机器学习</h3>
+                        <h3 id="research3-title-en" class="hidden-lang">🛡️ Trustworthy ML</h3>
+                        <p id="research3-text-cn">模型遗忘鲁棒性 · 对抗遗忘攻击 · 模型透明度 · 负责任的AI · 公平性与隐私交互</p>
+                        <p id="research3-text-en" class="hidden-lang">Unlearning Robustness · Adversarial Unlearning · Model Transparency · Responsible AI · Fairness & Privacy Intersection</p>
                     </div>
                 </div>
-            </div>
+            </section>
 
             <!-- Skills Section -->
-            <div class="section">
-                <h2>🛠️ 技能与工具</h2>
+            <section class="section">
+                <h2 id="skills-title-cn">🛠️ 技能与工具</h2>
+                <h2 id="skills-title-en" class="hidden-lang">🛠️ Skills & Tools</h2>
                 <div class="skills-section">
                     <div class="skill-category">
-                        <h3>编程语言</h3>
+                        <h3 id="skill-lang-cn">编程语言</h3>
+                        <h3 id="skill-lang-en" class="hidden-lang">Languages</h3>
                         <div class="skill-list">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">C++</span>
-                            <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">R</span>
+                            <span class="skill-tag">Python</span><span class="skill-tag">Java</span><span class="skill-tag">C++</span><span class="skill-tag">SQL</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>深度学习框架</h3>
+                        <h3 id="skill-ml-cn">机器学习与遗忘框架</h3>
+                        <h3 id="skill-ml-en" class="hidden-lang">ML & Unlearning Frameworks</h3>
                         <div class="skill-list">
-                            <span class="skill-tag">TensorFlow</span>
-                            <span class="skill-tag">PyTorch</span>
-                            <span class="skill-tag">Keras</span>
-                            <span class="skill-tag">scikit-learn</span>
+                            <span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">Scikit-learn</span>
+                            <span class="skill-tag">SISA (Unlearning)</span><span class="skill-tag">TensorFlow Unlearning</span><span class="skill-tag">Opacus</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>隐私保护工具</h3>
+                        <h3 id="skill-privacy-cn">隐私保护工具包</h3>
+                        <h3 id="skill-privacy-en" class="hidden-lang">Privacy Toolkits</h3>
                         <div class="skill-list">
-                            <span class="skill-tag">Opacus</span>
-                            <span class="skill-tag">TensorFlow Privacy</span>
-                            <span class="skill-tag">Diffprivlib</span>
-                            <span class="skill-tag">PySyft</span>
+                            <span class="skill-tag">Diffprivlib</span><span class="skill-tag">TensorFlow Privacy</span><span class="skill-tag">IBM Differential Privacy</span>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Projects Section -->
-            <div class="section">
-                <h2>📚 代表性项目</h2>
+            <!-- Projects Section (Focus on Machine Unlearning) -->
+            <section class="section" id="projects">
+                <h2 id="projects-title-cn">📚 代表性项目</h2>
+                <h2 id="projects-title-en" class="hidden-lang">📚 Featured Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <h3>🔐 隐私保护的神经网络训练</h3>
-                        <p>使用差分隐私技术实现MNIST和CIFAR-10数据集上的隐私保护模型训练。评估隐私预算与模型精度之间的权衡。</p>
-                        <a href="https://github.com/yourusername/privacy-neural-networks" class="project-link">查看项目 →</a>
+                        <h3 id="project1-title-cn">🧽 基于SISA的高效机器遗忘框架</h3>
+                        <h3 id="project1-title-en" class="hidden-lang">🧽 Efficient Unlearning via SISA Framework</h3>
+                        <p id="project1-text-cn">实现针对图像分类任务的近似遗忘机制，将数据集分片训练并支持快速样本遗忘，遗忘时间相比重训练降低85%以上，保持模型精度。</p>
+                        <p id="project1-text-en" class="hidden-lang">Implement an approximate unlearning mechanism for image classification using SISA; reduces unlearning time by >85% compared to retraining while maintaining model accuracy.</p>
+                        <a href="https://github.com/chenrongjiemj/unlearning-sisa" class="project-link" target="_blank" id="project1-link-cn">查看项目</a>
+                        <a href="https://github.com/chenrongjiemj/unlearning-sisa" class="project-link hidden-lang" target="_blank" id="project1-link-en">View Project</a>
                     </div>
                     <div class="project-card">
-                        <h3>🌐 联邦学习框架</h3>
-                        <p>开发分布式联邦学习系统，支持多个客户端的隐私保护协作学习，实现高效的通信和计算。</p>
-                        <a href="https://github.com/yourusername/federated-learning" class="project-link">查看项目 →</a>
+                        <h3 id="project2-title-cn">🔏 差分隐私下的遗忘验证协议</h3>
+                        <h3 id="project2-title-en" class="hidden-lang">🔏 Unlearning Verification under Differential Privacy</h3>
+                        <p id="project2-text-cn">设计隐私保护遗忘验证协议，允许第三方在不泄露原始模型信息的前提下验证特定数据是否被成功遗忘，平衡隐私与可审计性。</p>
+                        <p id="project2-text-en" class="hidden-lang">Design a privacy-preserving unlearning verification protocol that allows a third party to verify data deletion without exposing original model parameters, balancing privacy and auditability.</p>
+                        <a href="https://github.com/chenrongjiemj/unlearning-verification" class="project-link" target="_blank" id="project2-link-cn">查看项目</a>
+                        <a href="https://github.com/chenrongjiemj/unlearning-verification" class="project-link hidden-lang" target="_blank" id="project2-link-en">View Project</a>
                     </div>
                     <div class="project-card">
-                        <h3>🛡️ 对抗性鲁棒性分析</h3>
-                        <p>研究深度学习模型的对抗性攻击和防御机制，提高模型在对抗样本下的鲁棒性。</p>
-                        <a href="https://github.com/yourusername/adversarial-robustness" class="project-link">查看项目 →</a>
+                        <h3 id="project3-title-cn">📊 遗忘鲁棒性评估基准</h3>
+                        <h3 id="project3-title-en" class="hidden-lang">📊 Benchmark for Unlearning Robustness</h3>
+                        <p id="project3-text-cn">构建针对机器遗忘算法的攻击评估工具，度量遗忘后模型对成员推理攻击和遗忘痕迹提取的防御能力，推动安全遗忘标准。</p>
+                        <p id="project3-text-en" class="hidden-lang">Build an evaluation toolkit for machine unlearning robustness, measuring defenses against membership inference attacks and unlearning trace extraction, promoting secure unlearning standards.</p>
+                        <a href="https://github.com/chenrongjiemj/unlearning-robustness" class="project-link" target="_blank" id="project3-link-cn">查看项目</a>
+                        <a href="https://github.com/chenrongjiemj/unlearning-robustness" class="project-link hidden-lang" target="_blank" id="project3-link-en">View Project</a>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="section" id="contact">
+                <h2 id="contact-title-cn">💬 联系我</h2>
+                <h2 id="contact-title-en" class="hidden-lang">💬 Get in Touch</h2>
+                <p id="contact-text-cn">十分欢迎就机器遗忘、隐私保护及数据合规等方向进行交流与合作。无论学术讨论或业界合作，请通过以下方式联系我：</p>
+                <p id="contact-text-en" class="hidden-lang">I’d love to collaborate or discuss machine unlearning, privacy protection, and data compliance. Feel free to reach out via:</p>
+                <div class="contact-links" style="margin-top: 30px;">
+                    <a href="mailto:chenr5425@gmail.com">📧 Email</a>
+                    <a href="https://linkedin.com/in/rongjie-chen" target="_blank">💼 LinkedIn</a>
+                    <a href="https://github.com/chenrongjiemj" target="_blank">🐙 GitHub</a>
+                </div>
+            </section>
         </div>
 
-        <!-- Footer -->
-        <div class="footer">
-            <p>📍 东京，日本 | 💼 正在寻找隐私保护和深度学习领域的研究合作机会</p>
-            <p style="margin-top: 15px; font-size: 0.9em; color: #999;">© 2024 Rongjie Chen. 感谢访问我的GitHub主页！</p>
-        </div>
+        <!-- Footer (Location: Fuzhou, China) -->
+        <footer class="footer">
+            <p id="footer-location-cn">📍 中国 · 福州</p>
+            <p id="footer-location-en" class="hidden-lang">📍 Fuzhou, China</p>
+            <p id="footer-looking-cn" style="margin-bottom: 20px;">聚焦机器遗忘与隐私保护 · 开放研究合作及实习机会</p>
+            <p id="footer-looking-en" class="hidden-lang" style="margin-bottom: 20px;">Focus on Machine Unlearning & Privacy · Open to research collaboration & internships</p>
+            <div class="social-links">
+                <a href="https://github.com/chenrongjiemj" target="_blank" title="GitHub">GH</a>
+                <a href="https://linkedin.com/in/rongjie-chen" target="_blank" title="LinkedIn">IN</a>
+                <a href="mailto:chenr5425@gmail.com" title="Email">✉️</a>
+            </div>
+            <p id="footer-copyright-cn" style="margin-top: 20px; font-size: 0.9em;">© 2025 Rongjie Chen. 保持好奇，捍卫隐私。</p>
+            <p id="footer-copyright-en" class="hidden-lang" style="margin-top: 20px; font-size: 0.9em;">© 2025 Rongjie Chen. Stay curious, defend privacy.</p>
+        </footer>
     </div>
+
+    <script>
+        let currentLanguage = 'zh';
+
+        function toggleLanguage() {
+            const elements = document.querySelectorAll('[id]');
+            const langBtn = document.getElementById('langBtn');
+            
+            if (currentLanguage === 'zh') {
+                elements.forEach(el => {
+                    if (el.id.endsWith('-cn')) el.classList.add('hidden-lang');
+                    else if (el.id.endsWith('-en')) el.classList.remove('hidden-lang');
+                });
+                currentLanguage = 'en';
+                langBtn.textContent = '中文';
+                document.documentElement.lang = 'en';
+                localStorage.setItem('language', 'en');
+            } else {
+                elements.forEach(el => {
+                    if (el.id.endsWith('-cn')) el.classList.remove('hidden-lang');
+                    else if (el.id.endsWith('-en')) el.classList.add('hidden-lang');
+                });
+                currentLanguage = 'zh';
+                langBtn.textContent = 'English';
+                document.documentElement.lang = 'zh-CN';
+                localStorage.setItem('language', 'zh');
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.style.colorScheme === 'dark';
+            html.style.colorScheme = isDark ? 'light' : 'dark';
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+
+        function scrollToSection(event) {
+            event.preventDefault();
+            const target = event.currentTarget.getAttribute('href');
+            const element = document.querySelector(target);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('language') || 'zh';
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedLanguage === 'en') {
+                currentLanguage = 'zh';
+                toggleLanguage();
+            }
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.style.colorScheme = 'dark';
+            }
+            // fix navigation links using correct event handler
+            document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+                link.addEventListener('click', scrollToSection);
+            });
+        });
+    </script>
 </body>
 </html>
